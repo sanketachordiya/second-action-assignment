@@ -1,0 +1,22 @@
+name: Deployment Exercise Project
+on: [push]
+jobs:
+  deployJob:
+    runs-on:  ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+      - name: Install Depencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint        
+      - name: Run Tests
+        run: npm test
+      - name: Build Project
+        run: npm run build  
+      - name: Deploy code
+        run: echo "Deploying..."              
